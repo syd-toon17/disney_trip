@@ -22,17 +22,25 @@ def select_destination():
     while confirmation == 'no':
             parks.remove(destination)
             destination = randomizer(parks)
-            confirmation = input(f'Sorry about that, does {destination} work better? yes or no?: ')
-    return destination        
+            confirmation = input(f'Sorry about that, does {destination} work better? yes or no?: ')       
+    if(destination == 'Magic Kingdom'):
+        plan_mk ()
+    elif(destination == 'Animal Kingdom'):
+        plan_ak ()
+    elif(destination == "Disney's Hollywood Studios"):
+        plan_hs ()
+    elif(destination == 'EPCOT'):
+        plan_epcot ()
+    return destination
 
-destination = select_destination()
+#plan magic kingdom funct
 def plan_mk ():
     ride = randomizer(mk_rides)
     confirmation = input(f'Would you like to ride {ride} today? yes or no?: ')
     while confirmation == 'no':
             mk_rides.remove(ride)
             ride = randomizer(mk_rides)
-            ride = input (f'No problem! Does {ride} work better? yes or no?: ')
+            confirmation = input (f'No problem! Does {ride} work better? yes or no?: ')
     resturant = randomizer(mk_resturants)
     confirmation = input(f'Would you like to eat at {resturant}? yes or no?: ')
     while confirmation == 'no':
@@ -41,31 +49,68 @@ def plan_mk ():
     return plan_mk
 
 
-# def plan_ak ():
+#plan animal kingdom funct
+def plan_ak ():
+    ride = randomizer(ak_rides)
+    confirmation = (f'Would you like to ride {ride} today? yes or no?: ')
+    while confirmation == 'no':
+            ak_rides.remove(ride)
+            ride = randomizer(ak_rides)
+            ride = input(f'No problem! Does {ride} work better? yes or no?: ')
+    resturant = randomizer(ak_resturants)
+    confirmation = input(f'Would you like to eat at {resturant}? yes or no?: ')
+    while confirmation == 'no':
+            ak_resturants.remove(resturant)
+            resturant = randomizer(ak_resturants)
+            resturant = input(f'Sorry that does not work for you, how about {resturant} instead?: yes or no?: ')
+    return plan_ak
 
-# def plan_hs ():
 
-# def plan_epcot ():
+#plan hollywood studios funct
+def plan_hs ():
+    ride = randomizer(hs_rides)
+    confirmation = input(f'Would you like to ride {ride} today? yes or no?: ')
+    while confirmation == 'no':
+            hs_rides.remove(ride)
+            ride = randomizer(hs_rides)
+            ride = input(f'No problem! Does {ride} work better? yes or no?: ')
+    resturant = randomizer(hs_resturants)
+    confirmation = input(f'Would you like to eat at {resturant}? yes or no?: ')
+    while confirmation == 'no':
+            hs_resturants.remove(resturant)
+            resturant = randomizer(hs_resturants)
+            resturant = input(f'Sorry that does not work for you, how about {resturant} instead?: yes or no?: ')
+    select_transportation("Disney's Hollywood Studios", ride, resturant)  # passing in destination,ride, restarant
 
-if(destination == 'Magic Kingdom'):
-    plan_mk ()
-# elif(destination == 'Animal Kingdom'):
-#     plan_ak ()
-# elif(destination == "Disney's Hollywood Studion"):
-#     plan_hs ()
-# elif(destination == 'EPCOT'):
-#     plan_epcot ()
+
+#plan epcot funct
+def plan_epcot ():
+    ride = randomizer(epcot_rides)
+    confirmation = (f'Would you like to ride {ride} today? yes or no?: ')
+    while confirmation == 'no':
+            epcot_rides.remove(ride)
+            ride = randomizer(epcot_rides)
+            ride = input(f'No problem! Does {ride} work better? yes or no?: ')
+    resturant = randomizer(epcot_resturants)
+    confirmation = input(f'Would you like to eat at {resturant}? yes or no?: ')
+    while confirmation == 'no':
+            epcot_resturants.remove(resturant)
+            resturant = randomizer(epcot_resturants)
+            resturant = input(f'Sorry that does not work for you, how about {resturant} instead?: yes or no?: ')
+    return plan_epcot
 
 
-#Select transport mode
-# def select_transportation():
-#     transportation = randomizer(mode_of_trans)
-#     confirmation = input(f'Does {transportation} work for your mode of transportation? yes or no?: ')
-#     while confirmation == 'no':
-#             mode_of_trans.remove(transportation)
-#             transportation = randomizer(mode_of_trans)
-#             confirmation = input(f'Sorry about that, will {transportation} work? yes or no?: ')
-#     return transportation
 
-# select_transportation()
 
+# Select transport mode
+def select_transportation(destination, ride, resturant):
+    transportation = randomizer(mode_of_trans)
+    confirmation = input(f'Does {transportation} work for your mode of transportation? yes or no?: ')
+    while confirmation == 'no':
+            mode_of_trans.remove(transportation)
+            transportation = randomizer(mode_of_trans)
+            confirmation = input(f'Sorry about that, will {transportation} work? yes or no?: ')
+    print(f'summery of the trip {destination} {ride} {resturant} {transportation}')
+
+
+select_destination()
